@@ -14,6 +14,11 @@ const socketHandler = (server) => {
 
     socket.on("createEmail", (newEmail) => {
       console.log("createEmail", newEmail);
+
+      io.emit("newEmail", {
+        ...newEmail,
+        createdAt: new Date().getTime(),
+      });
     });
 
     socket.on("disconnect", () => {
