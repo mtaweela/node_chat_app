@@ -15,7 +15,7 @@ const socketHandler = (server) => {
     socket.on("createEmail", (newEmail) => {
       console.log("createEmail", newEmail);
 
-      io.emit("newEmail", {
+      socket.broadcast.emit("newEmail", {
         ...newEmail,
         createdAt: new Date().getTime(),
       });
