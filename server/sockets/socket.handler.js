@@ -13,13 +13,15 @@ const socketHandler = (server) => {
       generateMessage("Admin", "new user joined.")
     );
 
-    socket.on("createMessage", (message) => {
-      console.log("createEmail", message);
+    socket.on("createMessage", (message, callback) => {
+      console.log("createMessage", message);
 
       socket.broadcast.emit(
         "newMessage",
         generateMessage(message.from, message.text)
       );
+
+      callback("this is from the server.");
     });
 
     socket.on("disconnect", () => {
